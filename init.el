@@ -252,6 +252,13 @@
   (variable-pitch-mode 1)
   (visual-line-mode 1))
 
+  (general-define-key
+  :prefix "C-c"
+  ;; bind "C-c a" to 'org-agenda
+  "a" 'org-agenda
+  "b" 'counsel-bookmark
+  "c" 'org-capture)
+
 (use-package org
   :pin org
   :commands (org-capture org-agenda)
@@ -607,6 +614,29 @@
   :config
   (evil-collection-define-key 'normal 'dired-mode-map
     "H" 'dired-hide-dotfiles-mode))
+
+(use-package mu4e
+  :ensure nil
+  :defer 20 ;wait unil 20 seconds after startup
+  :config
+  (setq mu4e-change-filenames-when-moving t)
+
+  ;; Refresh mail using isync every 10 minutes
+  (setq mu4e-update-interval (* 10 60))
+  (setq mu4e-get-mail-command "mbsync -a")
+  (setq mu4e-maildir "~/Mail")
+
+  (setq mu4e-drafts-folder "/[Gmail]/Drafts")
+  (setq mu4e-sent-folder   "/[Gmail]/Sent Mail")
+  (setq mu4e-refile-folder "/[Gmail]/All Mail")
+  (setq mu4e-trash-folder  "/[Gmail]/Trash")
+
+(setq mu4e-maildir-shortcuts
+    '((:maildir "/Inbox"    :key ?i)
+      (:maildir "/[Gmail]/Sent Mail" :key ?s)
+      (:maildir "/[Gmail]/Trash"     :key ?t)
+      (:maildir "/[Gmail]/Drafts"    :key ?d)
+      (:maildir "/[Gmail]/All Mail"  :key ?a))))
 
 ;; Make gc pauses faster by decreasing the threshold.
 (setq gc-cons-threshold (* 2 1000 1000))

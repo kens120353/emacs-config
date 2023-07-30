@@ -1,6 +1,6 @@
 #+title: Emacs From Scratch Configuration
 #+PROPERTY: header-args:emacs-lisp :tangle ./init.el :mkdirp yes
-#+startup: overview 
+#+Startup: overview
 
 * Welcome!
 
@@ -417,6 +417,13 @@ This section contains the basic configuration for =org-mode= plus the configurat
     (org-indent-mode)
     (variable-pitch-mode 1)
     (visual-line-mode 1))
+
+    (general-define-key
+    :prefix "C-c"
+    ;; bind "C-c a" to 'org-agenda
+    "a" 'org-agenda
+    "b" 'counsel-bookmark
+    "c" 'org-capture)
 
   (use-package org
     :pin org
@@ -1139,6 +1146,33 @@ This is an example of configuring another non-Emacs application using org-mode. 
 
 #+end_src
 
+** Email
+#+begin_src emacs-lisp
+
+(use-package mu4e
+  :ensure nil
+  :defer 20 ;wait unil 20 seconds after startup
+  :config
+  (setq mu4e-change-filenames-when-moving t)
+
+  ;; Refresh mail using isync every 10 minutes
+  (setq mu4e-update-interval (* 10 60))
+  (setq mu4e-get-mail-command "mbsync -a")
+  (setq mu4e-maildir "~/Mail")
+
+  (setq mu4e-drafts-folder "/[Gmail]/Drafts")
+  (setq mu4e-sent-folder   "/[Gmail]/Sent Mail")
+  (setq mu4e-refile-folder "/[Gmail]/All Mail")
+  (setq mu4e-trash-folder  "/[Gmail]/Trash")
+
+(setq mu4e-maildir-shortcuts
+    '((:maildir "/Inbox"    :key ?i)
+      (:maildir "/[Gmail]/Sent Mail" :key ?s)
+      (:maildir "/[Gmail]/Trash"     :key ?t)
+      (:maildir "/[Gmail]/Drafts"    :key ?d)
+      (:maildir "/[Gmail]/All Mail"  :key ?a))))
+
+#+end_src
 * Runtime Performance
 
 Dial the GC threshold back down so that garbage collection happens more frequently but in less time.
@@ -1149,4 +1183,3 @@ Dial the GC threshold back down so that garbage collection happens more frequent
   (setq gc-cons-threshold (* 2 1000 1000))
 
 #+end_src
-
