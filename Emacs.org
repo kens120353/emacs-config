@@ -437,9 +437,9 @@ This section contains the basic configuration for =org-mode= plus the configurat
     (setq org-log-into-drawer t)
 
     (setq org-agenda-files
-          '("~/Projects/OrgFiles/Tasks.org"
-            "~/Projects/OrgFiles/Habits.org"
-            "~/Projects/OrgFiles/Birthdays.org"))
+          '("D:/Projects/OrgFiles/Tasks.org"
+            "D:/Projects/OrgFiles/Habits.org"
+            "D:/Projects/OrgFiles/Birthdays.org"))
 
     (require 'org-habit)
     (add-to-list 'org-modules 'org-habit)
