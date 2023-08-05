@@ -2,3 +2,4 @@ etc/
 var/
 elpa/
 packages/
+.last*
