@@ -438,6 +438,7 @@ This section contains the basic configuration for =org-mode= plus the configurat
 
     (setq org-agenda-files
           '("D:/Projects/OrgFiles/Tasks.org"
+            "D:/Projects/OrgFiles/Meetings.org"
             "D:/Projects/OrgFiles/Habits.org"
             "D:/Projects/OrgFiles/Birthdays.org"))
 
