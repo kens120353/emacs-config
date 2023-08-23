@@ -60,35 +60,39 @@
 
 (setq inhibit-startup-message t)
 
-(scroll-bar-mode -1)        ; Disable visible scrollbar
-(tool-bar-mode -1)          ; Disable the toolbar
-(tooltip-mode -1)           ; Disable tooltips
-(set-fringe-mode 10)        ; Give some breathing room
+    (scroll-bar-mode -1)        ; Disable visible scrollbar
+    (tool-bar-mode -1)          ; Disable the toolbar
+    (tooltip-mode -1)           ; Disable tooltips
+    (set-fringe-mode 10)        ; Give some breathing room
 
-(menu-bar-mode -1)            ; Disable the menu bar
+    (menu-bar-mode -1)            ; Disable the menu bar
 
-(defalias 'yes-or-no-p 'y-or-n-p)    ; Make prompt always 'y' or 'n'
-(setq make-backup-files nil)         ; No backup file
+    (defalias 'yes-or-no-p 'y-or-n-p)    ; Make prompt always 'y' or 'n'
+    (setq make-backup-files nil)         ; No backup file
 
-;; Set up the visible bell
-(setq visible-bell t)
 
-(column-number-mode)
-(global-display-line-numbers-mode t)
+;; auto close bracket insertion. New in emacs 24
+(electric-pair-mode 1)
 
-;; Set frame transparency
-(set-frame-parameter (selected-frame) 'alpha efs/frame-transparency)
-(add-to-list 'default-frame-alist `(alpha . ,efs/frame-transparency))
-(set-frame-parameter (selected-frame) 'fullscreen 'maximized)
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
+  ;; Set up the visible bell
+    (setq visible-bell t)
 
-;; Disable line numbers for some modes
-(dolist (mode '(org-mode-hook
-                term-mode-hook
-                shell-mode-hook
-                treemacs-mode-hook
-                eshell-mode-hook))
-  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+    (column-number-mode)
+    (global-display-line-numbers-mode t)
+
+    ;; Set frame transparency
+    (set-frame-parameter (selected-frame) 'alpha efs/frame-transparency)
+    (add-to-list 'default-frame-alist `(alpha . ,efs/frame-transparency))
+    (set-frame-parameter (selected-frame) 'fullscreen 'maximized)
+    (add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+    ;; Disable line numbers for some modes
+    (dolist (mode '(org-mode-hook
+                    term-mode-hook
+                    shell-mode-hook
+                    treemacs-mode-hook
+                    eshell-mode-hook))
+      (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 (set-face-attribute 'default nil :font "Fira Code Retina" :height efs/default-font-size)
 
