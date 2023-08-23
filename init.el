@@ -67,6 +67,8 @@
 
 (menu-bar-mode -1)            ; Disable the menu bar
 
+(defalias 'yes-or-no-p 'y-or-n-p)
+
 ;; Set up the visible bell
 (setq visible-bell t)
 
