@@ -67,7 +67,8 @@
 
 (menu-bar-mode -1)            ; Disable the menu bar
 
-(defalias 'yes-or-no-p 'y-or-n-p)
+(defalias 'yes-or-no-p 'y-or-n-p)    ; Make prompt always 'y' or 'n'
+(setq make-backup-files nil)         ; No backup file
 
 ;; Set up the visible bell
 (setq visible-bell t)
